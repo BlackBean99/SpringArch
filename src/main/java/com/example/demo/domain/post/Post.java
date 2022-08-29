@@ -20,7 +20,6 @@ import javax.persistence.OneToMany;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@NamedEntityGraph(name="Comment.fetchPost", attributeNodes = @NamedAttributeNode("post"))
 public class Post {
     @Id
     @GeneratedValue

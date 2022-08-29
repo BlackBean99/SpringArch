@@ -10,24 +10,27 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 
 @Entity
 @Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@NamedEntityGraph(name="Comment.fetchPost", attributeNodes = @NamedAttributeNode("post"))
 public class Comment {
     @Id
     @GeneratedValue
     private Long id;
 
-    private String title;
+    private String comment;
 
     @ManyToOne
     private Post post;
 
-    public Comment(String title, Post post){
-        this.title = title;
+    public Comment(String comment, Post post){
+        this.comment = comment;
         this.post = post;
     }
 

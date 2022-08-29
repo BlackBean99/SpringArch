@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.List;
 import java.util.Optional;
 
 @DataJpaTest
@@ -29,27 +30,34 @@ public class queryTest {
     public void PostRepositoryTest(){
         Post p1 = new Post("p1");
         Post p2 = new Post("p2");
-        Post p3 = new Post("p3");
+        System.out.println("======================PostSave====================");
 
         postRepository.save(p1);
         postRepository.save(p2);
-        postRepository.save(p3);
 
         postRepository.flush();
+        System.out.println("======================CommentSave====================");
 
         Comment c1 = new Comment("c1",p1);
-        Comment c2 = new Comment("c1",p2);
-        Comment c3 = new Comment("c1",p3);
+        Comment c2 = new Comment("b",p2);
 
         Comment save = commentRepository.save(c1);
         commentRepository.save(c2);
-        commentRepository.save(c3);
 
         commentRepository.flush();
 
-        Comment comment = commentRepository.findById(save.getId()).get();
+        System.out.println("======================ById====================");
+        commentRepository.findById(save.getId());
 
-        Assertions.assertThat(comment.getTitle()).isEqualTo("c1");
+        System.out.println("======================OneByComment====================");
+        List<Comment> comments = commentRepository.findByComment("b");
+        System.out.println(comments.size() == 2);
+
+
+        System.out.println("======================OneByComment====================");
+        Comment comment = commentRepository.findOneByComment("b");
+        System.out.println(comment != null);
+//        Assertions.assertThat(comment.getTitle()).isEqualTo("c1");
 
     }
 
