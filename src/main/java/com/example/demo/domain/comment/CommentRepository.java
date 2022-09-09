@@ -16,7 +16,6 @@ public interface CommentRepository extends JpaRepository<Comment,Long> {
 
     @EntityGraph("Comment.fetchPost")
     Comment findOneByComment(String title);
-
 }
 
 

@@ -17,16 +17,13 @@ import javax.persistence.OneToMany;
 
 @Entity
 @Getter
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 public class Post {
     @Id
     @GeneratedValue
     private Long id;
 
     private String title;
-
 
     public Post(String title){
         this.title = title;

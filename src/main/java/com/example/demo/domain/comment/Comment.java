@@ -15,9 +15,7 @@ import javax.persistence.NamedEntityGraph;
 
 @Entity
 @Getter
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 @NamedEntityGraph(name="Comment.fetchPost", attributeNodes = @NamedAttributeNode("post"))
 public class Comment {
     @Id
@@ -33,5 +31,4 @@ public class Comment {
         this.comment = comment;
         this.post = post;
     }
-
 }

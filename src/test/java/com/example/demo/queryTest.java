@@ -46,8 +46,8 @@ public class queryTest {
 
         commentRepository.flush();
 
-        System.out.println("======================ById====================");
-        commentRepository.findById(save.getId());
+//        System.out.println("======================ById====================");
+//        Comment commentk = commentRepository.findById(save.getId()).get();
 
         System.out.println("======================OneByComment====================");
         List<Comment> comments = commentRepository.findByComment("b");
@@ -57,8 +57,5 @@ public class queryTest {
         System.out.println("======================OneByComment====================");
         Comment comment = commentRepository.findOneByComment("b");
         System.out.println(comment != null);
-//        Assertions.assertThat(comment.getTitle()).isEqualTo("c1");
-
     }
-
 }
