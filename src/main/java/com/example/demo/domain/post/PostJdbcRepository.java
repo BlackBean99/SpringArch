@@ -7,4 +7,5 @@ import java.util.List;
 
 @Repository
 public interface PostJdbcRepository extends JpaRepository<Post,Long> {
+    void saveAll(List<Post> posts);
 }

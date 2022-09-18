@@ -8,12 +8,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class PostService {
-    private final PostJdbcRepository repository;
-
+    private final PostJdbcRepositoryImpl repository;
     public void saveAll(List<Post> items) {
         repository.saveAll(items);
     }

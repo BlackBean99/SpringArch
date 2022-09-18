@@ -25,7 +25,6 @@ public class PostController {
     @PostMapping("/api/clock/")
     public void bulkInsert(){
         long startTime = System.currentTimeMillis();
-        log.info("김수민바보");
         List<Post> items = new ArrayList<>();
         int N = rows;
         for (int i = 1; i <= N; i++) {
