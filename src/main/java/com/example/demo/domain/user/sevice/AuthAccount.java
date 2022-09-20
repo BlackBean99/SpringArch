@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.User;
 import java.util.List;
 import java.util.Objects;
 
+
 @Getter
 public class AuthAccount extends User {
     private final Account account;
