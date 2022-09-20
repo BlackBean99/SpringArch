@@ -35,3 +35,4 @@ public class Account {
     public static Account of(String email, String nickname, String password) {
         return new Account(email, nickname, password);
     }
+}

@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -17,14 +18,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/", "/home").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
+                    .formLogin()
+                    .loginPage("/login")
+                    .permitAll()
                 .and()
-                .logout()
-                .permitAll();
+                    .logout()
+                    .logoutSuccessUrl("/home")
+                    .permitAll();
     }
-
+    @Bean
     @Override
     protected UserDetailsService userDetailsService() {
         UserDetails user =
