@@ -4,13 +4,13 @@ import com.example.demo.domain.user.Account;
 import com.example.demo.domain.user.AuthUser;
 import com.example.demo.domain.user.sevice.AccountService;
 import com.example.demo.global.common.BasicResponse;
+import com.google.common.base.Optional;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
@@ -30,10 +30,10 @@ public class AccountController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+
     @ApiOperation(value = "reIssue")
     @GetMapping("/re-issue")
     public ResponseEntity<LoginResponseDto> reIssue(@RequestParam("email") String email, @RequestParam("refreshToken") String refreshToken) {
-
         LoginResponseDto responseDto = accountService.reIssueAccessToken(email, refreshToken);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
