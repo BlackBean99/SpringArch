@@ -5,7 +5,7 @@ import com.example.demo.domain.user.Account;
 import com.example.demo.domain.user.AccountRepository;
 import com.example.demo.domain.user.controller.LoginResponseDto;
 import com.example.demo.global.common.exception.BadRequestException;
-import com.example.demo.global.config.JwtProvider;
+import com.example.demo.global.config.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,22 +18,24 @@ public class AccountService {
     private final PasswordEncoder passwordEncoder;
     private final AccountRepository accountRepository;
     private final JwtProvider jwtProvider;
-//   회원가입
+
+    //   회원가입
     @Transactional
     public void signUp(String email, String nickname, String password) {
+        // 중복검증
         isDuplicateEmail(email);
         String encodePassword = passwordEncoder.encode(password);
         Account newAccount = Account.of(email, nickname, encodePassword);
         accountRepository.save(newAccount);
     }
-// 중복된 이메일 확인
+
+    // 중복된 이메일 확인
     public void isDuplicateEmail(String email) {
         boolean isDuplicate = accountRepository.existsByEmail(email);
-        if(!isDuplicate){
+        if(isDuplicate){
             throw new BadRequestException("이미 존재하는 회원입니다");
         }
     }
-//f
     public void logout(String email, String accessToken) {
         jwtProvider.logout(email, accessToken);
     }

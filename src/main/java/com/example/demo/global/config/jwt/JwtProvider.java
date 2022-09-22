@@ -1,4 +1,4 @@
-package com.example.demo.global.config;
+package com.example.demo.global.config.jwt;
 
 import com.example.demo.domain.user.sevice.CustomAccountDetailsService;
 import com.example.demo.global.common.redis.RedisService;

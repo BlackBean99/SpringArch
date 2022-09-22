@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/user")
+@RequestMapping("/api")
 @Api(value = "Account")
 public class AccountController {
     private final AccountService accountService;
@@ -31,6 +31,7 @@ public class AccountController {
     }
 
 
+//    RefreshToken, AccessToken 재발행
     @ApiOperation(value = "reIssue")
     @GetMapping("/re-issue")
     public ResponseEntity<LoginResponseDto> reIssue(@RequestParam("email") String email, @RequestParam("refreshToken") String refreshToken) {
