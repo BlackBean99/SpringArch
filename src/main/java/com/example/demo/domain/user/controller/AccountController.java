@@ -4,24 +4,29 @@ import com.example.demo.domain.user.Account;
 import com.example.demo.domain.user.AuthUser;
 import com.example.demo.domain.user.sevice.AccountService;
 import com.example.demo.global.common.BasicResponse;
-import com.google.common.base.Optional;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
-@Api(value = "Account")
+@Tag(name = "Account 관련 서비스", description = "회원가입, 로그인 둥둥")
 public class AccountController {
     private final AccountService accountService;
 
 //    로그아웃 기능 구현
-    @ApiOperation(value="logout")
+//    @ApiOperation(value="logout")
+    @Operation(description="로그아웃")
     @GetMapping("/logout")
     public ResponseEntity<BasicResponse> logout(@AuthUser Account account, HttpServletRequest request){
         String accessToken = request.getHeader("Authorization").substring(7);
@@ -32,7 +37,8 @@ public class AccountController {
 
 
 //    RefreshToken, AccessToken 재발행
-    @ApiOperation(value = "reIssue")
+//    @ApiOperation(value = "reIssue")
+    @Operation(description="re-issue")
     @GetMapping("/re-issue")
     public ResponseEntity<LoginResponseDto> reIssue(@RequestParam("email") String email, @RequestParam("refreshToken") String refreshToken) {
         LoginResponseDto responseDto = accountService.reIssueAccessToken(email, refreshToken);
@@ -40,7 +46,8 @@ public class AccountController {
     }
 
 //  회원가입 기능 구현
-    @ApiOperation(value = "sing-up")
+//    @ApiOperation(value = "sing-up")
+    @Operation(description="sign-up")
     @PostMapping("sign-up")
     public ResponseEntity<BasicResponse> signUp(@RequestBody SignUpRequestDto signUpUser){
         accountService.signUp(signUpUser.getEmail(),signUpUser.getEmail(),signUpUser.getPassword());
@@ -48,7 +55,8 @@ public class AccountController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
     //     로그인 기능 구현
-    @ApiOperation(value = "LogIn")
+//    @ApiOperation(value = "LogIn")
+    @Operation(summary = "로그인 메서드", description = "로그인 메서드입니다.")
     @PostMapping("login")
     public ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto loginDto){
         LoginResponseDto responseDto = accountService.login(loginDto.getEmail(), loginDto.getPassword());

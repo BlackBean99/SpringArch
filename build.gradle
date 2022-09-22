@@ -39,12 +39,15 @@ dependencies {
 //	Spring Security
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.security:spring-security-test'
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.6'
+//	fox
 	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
 	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
-	implementation 'org.glassfish.jaxb:jaxb-runtime:4.0.0'
-	implementation 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
-	implementation 'com.sun.xml.bind:jaxb-impl:4.0.0'
-	implementation 'com.sun.xml.bind:jaxb-core:4.0.0'
+//	SpringDocs - Swagger
+//	implementation 'org.glassfish.jaxb:jaxb-runtime:4.0.0'
+//	implementation 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
+//	implementation 'com.sun.xml.bind:jaxb-impl:4.0.0'
+//	implementation 'com.sun.xml.bind:jaxb-core:4.0.0'
 }
 
 tasks.named('test') {
